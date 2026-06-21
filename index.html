@@ -108,6 +108,31 @@
       color: inherit;
     }
 
+    a:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    .skip-link {
+      position: fixed;
+      left: var(--space-4);
+      top: var(--space-4);
+      z-index: 10;
+      transform: translateY(-140%);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      color: var(--fg);
+      padding: var(--space-3) var(--space-4);
+      font-weight: 900;
+      text-decoration: none;
+      transition: transform var(--motion-fast) var(--ease-standard);
+    }
+
+    .skip-link:focus-visible {
+      transform: translateY(0);
+    }
+
     .page {
       width: min(100%, var(--container-max));
       margin: 0 auto;
@@ -255,6 +280,10 @@
 
     .btn:hover {
       transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
     }
 
     .btn:focus-visible {
@@ -499,10 +528,15 @@
       box-shadow: var(--elev-raised), var(--focus-ring);
     }
 
+    .repo-card:active {
+      transform: translateY(-1px);
+    }
+
     .repo-card h3 {
       font-family: var(--font-mono);
       font-size: var(--text-lg);
       letter-spacing: -0.02em;
+      overflow-wrap: anywhere;
     }
 
     .repo-card p {
@@ -527,6 +561,13 @@
       font-family: var(--font-mono);
       font-size: var(--text-xs);
       font-weight: 800;
+    }
+
+    .repo-meta span {
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-pill);
+      background: color-mix(in oklab, var(--surface-warm), white 42%);
+      padding: var(--space-1) var(--space-2);
     }
 
     .resource-map {
@@ -581,6 +622,30 @@
       color: var(--muted);
       font-size: var(--text-sm);
       line-height: var(--leading-body);
+    }
+
+    .state-note {
+      display: grid;
+      grid-template-columns: minmax(0, .55fr) minmax(0, 1fr);
+      gap: var(--space-5);
+      align-items: start;
+      margin-top: var(--space-6);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: color-mix(in oklab, var(--surface), var(--surface-warm) 18%);
+      box-shadow: var(--elev-ring);
+      padding: var(--space-5);
+    }
+
+    .state-note h3 {
+      font-size: var(--text-lg);
+    }
+
+    .state-note p {
+      color: var(--fg-2);
+      font-size: var(--text-sm);
+      line-height: var(--leading-body);
+      text-wrap: pretty;
     }
 
     .proof-band {
@@ -660,6 +725,10 @@
       outline: none;
       transform: translateY(-2px);
       box-shadow: var(--elev-raised), var(--focus-ring);
+    }
+
+    .link-list a:active {
+      transform: translateY(0);
     }
 
     .link-index {
@@ -744,6 +813,7 @@
       .hero,
       .panels,
       .resource-map,
+      .state-note,
       .proof-band {
         grid-template-columns: 1fr;
       }
@@ -780,6 +850,10 @@
         padding-bottom: var(--space-1);
       }
 
+      .nav a {
+        flex: 0 0 auto;
+      }
+
       h1 {
         font-size: clamp(48px, 17vw, 64px);
       }
@@ -802,9 +876,30 @@
         width: 100%;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+      }
+
+      .btn:hover,
+      .panel:hover,
+      .repo-card:hover,
+      .repo-card:focus-visible,
+      .link-list a:hover,
+      .link-list a:focus-visible {
+        transform: none;
+      }
+    }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <div class="page">
     <header class="topbar" aria-label="Site header">
       <a class="wordmark" href="/" aria-label="Hermegeddon home">
@@ -817,7 +912,7 @@
       </nav>
     </header>
 
-    <main>
+    <main id="main">
       <section class="hero" aria-labelledby="hero-title">
         <div>
           <p class="eyebrow">Public GitHub organization · founded Jun 2026</p>
@@ -966,6 +1061,14 @@
             </article>
           </div>
         </div>
+
+        <aside class="state-note" aria-labelledby="freshness-title">
+          <div>
+            <p class="kicker">Static data state</p>
+            <h3 id="freshness-title">Readable even when the source changes.</h3>
+          </div>
+          <p>This page is a hand-curated snapshot, not a live dashboard. If GitHub is unavailable, the directory still gives visitors useful names, roles, and inspection links; if the org changes, the update path is the site repository.</p>
+        </aside>
 
         <div class="proof-band" aria-labelledby="proof-title">
           <div class="proof-card">
