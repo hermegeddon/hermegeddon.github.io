@@ -3,142 +3,630 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Home of the Hermegeddon GitHub organization.">
-  <title>Hermegeddon</title>
+  <meta name="description" content="Hermegeddon is the public GitHub Pages home for experiments, tools, and infrastructure that survive first contact with reality.">
+  <title>Hermegeddon · experiments that survive contact</title>
   <style>
+    /* design-systems/colorful/tokens.css
+     * Structured token bindings for Colorful.
+     * colorful product language with warm bright canvas and saturated action color.
+     */
+
     :root {
-      color-scheme: dark;
-      --bg: #090a12;
-      --panel: rgba(255, 255, 255, 0.08);
-      --panel-border: rgba(255, 255, 255, 0.18);
-      --text: #f7f2ff;
-      --muted: #c9c1d9;
-      --accent: #ff5c7a;
-      --accent-2: #7c5cff;
-      --accent-3: #35d0ba;
+      --bg: #fff8d7;
+      --surface: #ffffff;
+      --surface-warm: #ffef9f;
+      --fg: #1d1836;
+      --fg-2: #4c426c;
+      --muted: #796f91;
+      --meta: #ff6b00;
+      --border: #eadfba;
+      --border-soft: #f5eccd;
+      --accent: #ff6b00;
+      --accent-on: #ffffff;
+      --accent-hover: color-mix(in oklab, var(--accent), black 8%);
+      --accent-active: color-mix(in oklab, var(--accent), black 14%);
+      --success: #2e9d57;
+      --warn: #ffb020;
+      --danger: #e5484d;
+      --font-display: Inter, system-ui, sans-serif;
+      --font-body: Inter, system-ui, sans-serif;
+      --font-mono: "SF Mono", ui-monospace, Menlo, monospace;
+      --text-xs: 12px;
+      --text-sm: 14px;
+      --text-base: 16px;
+      --text-lg: 18px;
+      --text-xl: 24px;
+      --text-2xl: 36px;
+      --text-3xl: 54px;
+      --text-4xl: 76px;
+      --leading-body: 1.52;
+      --leading-tight: 1.06;
+      --tracking-display: -0.025em;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-12: 48px;
+      --section-y-desktop: 96px;
+      --section-y-tablet: 68px;
+      --section-y-phone: 48px;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-pill: 9999px;
+      --elev-flat: none;
+      --elev-ring: 0 0 0 1px var(--border);
+      --elev-raised: 0 18px 44px rgba(29, 24, 54, 0.14);
+      --focus-ring: 0 0 0 4px rgba(255, 107, 0, 0.26);
+      --motion-fast: 150ms;
+      --motion-base: 240ms;
+      --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+      --container-max: 1180px;
+      --container-gutter-desktop: 36px;
+      --container-gutter-tablet: 24px;
+      --container-gutter-phone: 16px;
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      text-rendering: geometricPrecision;
+    }
+
     body {
       min-height: 100vh;
       margin: 0;
-      display: grid;
-      place-items: center;
-      padding: 2rem;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
       background:
-        radial-gradient(circle at 20% 20%, rgba(124, 92, 255, 0.35), transparent 30rem),
-        radial-gradient(circle at 80% 15%, rgba(53, 208, 186, 0.22), transparent 26rem),
-        radial-gradient(circle at 50% 90%, rgba(255, 92, 122, 0.25), transparent 28rem),
-        var(--bg);
+        radial-gradient(circle at 82% 8%, color-mix(in oklab, var(--surface-warm), transparent 10%) 0 14rem, transparent 27rem),
+        linear-gradient(135deg, var(--bg), color-mix(in oklab, var(--surface-warm), white 54%) 60%, var(--bg));
+      color: var(--fg);
     }
 
-    main {
-      width: min(100%, 56rem);
-      padding: clamp(2rem, 6vw, 5rem);
-      border: 1px solid var(--panel-border);
-      border-radius: 2rem;
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
-      box-shadow: 0 2rem 8rem rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(18px);
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin: 0 0 1.5rem;
-      padding: 0.5rem 0.75rem;
-      border: 1px solid var(--panel-border);
-      border-radius: 999px;
-      color: var(--muted);
-      background: var(--panel);
-      font-size: 0.9rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .pulse {
-      width: 0.7rem;
-      height: 0.7rem;
-      border-radius: 999px;
-      background: var(--accent-3);
-      box-shadow: 0 0 1.25rem var(--accent-3);
-    }
-
-    h1 {
-      margin: 0;
-      max-width: 11ch;
-      font-size: clamp(3.5rem, 12vw, 8.5rem);
-      line-height: 0.88;
-      letter-spacing: -0.08em;
-    }
-
-    p {
-      max-width: 42rem;
-      margin: 1.75rem 0 0;
-      color: var(--muted);
-      font-size: clamp(1.1rem, 2vw, 1.45rem);
-      line-height: 1.7;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 2.25rem;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(color-mix(in oklab, var(--border), transparent 18%) 1px, transparent 1px),
+        linear-gradient(90deg, color-mix(in oklab, var(--border), transparent 18%) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.58), transparent 72%);
     }
 
     a {
       color: inherit;
     }
 
-    .button {
+    .page {
+      width: min(100%, var(--container-max));
+      margin: 0 auto;
+      padding: var(--space-6) var(--container-gutter-desktop) var(--section-y-desktop);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-3) 0 var(--space-8);
+    }
+
+    .wordmark {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-weight: 900;
+      letter-spacing: var(--tracking-display);
+      text-decoration: none;
+    }
+
+    .mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 2px solid var(--fg);
+      border-radius: 14px;
+      background: var(--accent);
+      color: var(--accent-on);
+      box-shadow: 6px 6px 0 var(--fg);
+      font-family: var(--font-mono);
+      font-size: var(--text-lg);
+      transform: rotate(-3deg);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--fg-2);
+      font-size: var(--text-sm);
+      font-weight: 700;
+    }
+
+    .nav a {
+      border-radius: var(--radius-pill);
+      padding: var(--space-3) var(--space-4);
+      text-decoration: none;
+      transition: background var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard);
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible {
+      background: var(--surface);
+      color: var(--fg);
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
+      gap: clamp(var(--space-8), 6vw, 72px);
+      align-items: center;
+      padding: clamp(var(--space-12), 9vw, 92px) 0 var(--section-y-tablet);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      width: fit-content;
+      margin: 0 0 var(--space-5);
+      padding: var(--space-2) var(--space-4);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      background: var(--surface);
+      color: var(--fg-2);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 4px color-mix(in oklab, var(--success), transparent 78%);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 10ch;
+      color: var(--fg);
+      font-family: var(--font-display);
+      font-size: clamp(56px, 8.4vw, var(--text-4xl));
+      line-height: var(--leading-tight);
+      letter-spacing: calc(var(--tracking-display) * 1.25);
+      text-wrap: balance;
+    }
+
+    .lead {
+      max-width: 58ch;
+      margin-top: var(--space-6);
+      color: var(--fg-2);
+      font-size: clamp(var(--text-base), 2vw, var(--text-lg));
+      line-height: var(--leading-body);
+      text-wrap: pretty;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-8);
+    }
+
+    .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 3rem;
-      padding: 0.8rem 1.1rem;
+      min-height: 48px;
+      padding: var(--space-4) var(--space-5);
       border: 1px solid transparent;
-      border-radius: 999px;
-      color: #130b18;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      font-weight: 800;
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 900;
       text-decoration: none;
-      box-shadow: 0 1rem 2.5rem rgba(124, 92, 255, 0.32);
+      transition: transform var(--motion-fast) var(--ease-standard), background var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard);
     }
 
-    .button.secondary {
-      color: var(--text);
-      background: var(--panel);
-      border-color: var(--panel-border);
-      box-shadow: none;
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--accent-on);
+      box-shadow: 8px 8px 0 var(--fg);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      border-color: var(--border);
+      background: var(--surface);
+      color: var(--fg);
+      box-shadow: var(--elev-ring);
+    }
+
+    .btn-secondary:hover {
+      background: color-mix(in oklab, var(--surface-warm), white 34%);
+    }
+
+    .hero-card {
+      position: relative;
+      display: grid;
+      gap: var(--space-4);
+      padding: var(--space-5);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      box-shadow: 18px 18px 0 var(--surface-warm), 18px 18px 0 2px var(--fg);
+      transform: rotate(1.25deg);
+    }
+
+    .hero-card::before {
+      content: "public home";
+      position: absolute;
+      top: -18px;
+      right: var(--space-5);
+      padding: var(--space-2) var(--space-4);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-pill);
+      background: var(--accent);
+      color: var(--accent-on);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .terminal {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--fg);
+      color: var(--accent-on);
+      font-family: var(--font-mono);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+    }
+
+    .terminal-head {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.08);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--danger);
+    }
+
+    .dot:nth-child(2) { background: var(--warn); }
+    .dot:nth-child(3) { background: var(--success); }
+
+    .terminal-body {
+      display: grid;
+      gap: var(--space-3);
+      padding: var(--space-5);
+      font-size: var(--text-sm);
+      line-height: 1.7;
+    }
+
+    .terminal-body span {
+      color: var(--warn);
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-4);
+      margin-top: var(--space-8);
+    }
+
+    .tile,
+    .panel {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      box-shadow: var(--elev-ring);
+    }
+
+    .tile {
+      padding: var(--space-5);
+    }
+
+    .tile strong {
+      display: block;
+      color: var(--fg);
+      font-size: var(--text-xl);
+      line-height: var(--leading-tight);
+    }
+
+    .tile p {
+      margin-top: var(--space-2);
+      color: var(--muted);
+      font-size: var(--text-sm);
+      line-height: 1.45;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: var(--space-5);
+      margin: 0 0 var(--space-5);
+    }
+
+    h2 {
+      max-width: 14ch;
+      font-size: clamp(var(--text-2xl), 5vw, var(--text-3xl));
+      line-height: var(--leading-tight);
+      letter-spacing: var(--tracking-display);
+      text-wrap: balance;
+    }
+
+    .section-note {
+      max-width: 38ch;
+      color: var(--muted);
+      font-size: var(--text-base);
+      line-height: var(--leading-body);
+      text-wrap: pretty;
+    }
+
+    .panels {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-5);
+      margin-top: var(--space-6);
+    }
+
+    .panel {
+      display: grid;
+      align-content: start;
+      gap: var(--space-4);
+      min-height: 210px;
+      padding: var(--space-5);
+      transition: transform var(--motion-base) var(--ease-standard), box-shadow var(--motion-base) var(--ease-standard);
+    }
+
+    .panel:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--elev-raised);
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+    }
+
+    .kicker {
+      color: var(--meta);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      color: var(--fg);
+      font-size: var(--text-xl);
+      line-height: var(--leading-tight);
+      letter-spacing: -0.01em;
+    }
+
+    .panel p {
+      color: var(--fg-2);
+      font-size: var(--text-sm);
+      line-height: var(--leading-body);
+    }
+
+    .chip {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      padding: var(--space-2) var(--space-3);
+      background: color-mix(in oklab, var(--surface-warm), white 38%);
+      color: var(--fg-2);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 800;
+    }
+
+    .rule {
+      height: 2px;
+      margin: var(--section-y-tablet) 0 var(--space-8);
+      border: 0;
+      background: linear-gradient(90deg, var(--fg), transparent);
     }
 
     footer {
-      margin-top: 3rem;
-      color: rgba(247, 242, 255, 0.56);
-      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding-top: var(--space-8);
+      color: var(--muted);
+      font-size: var(--text-sm);
+    }
+
+    footer a {
+      color: var(--fg);
+      font-weight: 800;
+      text-decoration: underline;
+      text-decoration-color: var(--accent);
+      text-decoration-thickness: 3px;
+      text-underline-offset: 4px;
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        padding: var(--space-5) var(--container-gutter-tablet) var(--section-y-tablet);
+      }
+
+      .hero,
+      .panels {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        max-width: 620px;
+        transform: none;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        padding: var(--space-4) var(--container-gutter-phone) var(--section-y-phone);
+      }
+
+      .topbar,
+      footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: var(--space-1);
+      }
+
+      h1 {
+        font-size: clamp(48px, 17vw, 64px);
+      }
+
+      .status-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .actions .btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <main>
-    <div class="eyebrow"><span class="pulse" aria-hidden="true"></span> GitHub organization</div>
-    <h1>Hermegeddon</h1>
-    <p>
-      A small starting point for the Hermegeddon organization: experiments,
-      tools, infrastructure, and whatever survives first contact with reality.
-    </p>
-    <div class="actions" aria-label="Primary links">
-      <a class="button" href="https://github.com/hermegeddon">Visit the GitHub organization</a>
-      <a class="button secondary" href="https://github.com/hermegeddon/hermegeddon.github.io">View this site repository</a>
-    </div>
-    <footer>Published at hermegeddon.dev with GitHub Pages.</footer>
-  </main>
+  <div class="page">
+    <header class="topbar" aria-label="Site header">
+      <a class="wordmark" href="/" aria-label="Hermegeddon home">
+        <span class="mark" aria-hidden="true">H</span>
+        <span>Hermegeddon</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="https://github.com/hermegeddon">GitHub</a>
+        <a href="https://github.com/hermegeddon/hermegeddon.github.io">Site repo</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <p class="eyebrow">GitHub organization · public landing</p>
+          <h1 id="hero-title">Experiments that survive contact.</h1>
+          <p class="lead">
+            Hermegeddon is a small public home for tools, infrastructure, and research-adjacent experiments: useful enough to publish, honest enough to keep close to the workbench.
+          </p>
+          <div class="actions" aria-label="Primary links">
+            <a class="btn btn-primary" href="https://github.com/hermegeddon">Visit the GitHub organization</a>
+            <a class="btn btn-secondary" href="https://github.com/hermegeddon/hermegeddon.github.io">View this site repository</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Repository quick look">
+          <div class="terminal" aria-hidden="true">
+            <div class="terminal-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <div class="terminal-body">
+              <div><span>$</span> org: hermegeddon</div>
+              <div><span>$</span> status: published via GitHub Pages</div>
+              <div><span>$</span> bias: prototypes → tools → proof</div>
+            </div>
+          </div>
+          <div class="status-grid" aria-label="Site summary">
+            <div class="tile"><strong>Public</strong><p>Readable starting point for the organization.</p></div>
+            <div class="tile"><strong>Small</strong><p>One page now; room for project pages later.</p></div>
+            <div class="tile"><strong>Live</strong><p>Served at hermegeddon.dev.</p></div>
+          </div>
+        </aside>
+      </section>
+
+      <hr class="rule">
+
+      <section aria-labelledby="focus-title">
+        <div class="section-head">
+          <h2 id="focus-title">What belongs here?</h2>
+          <p class="section-note">A tighter first pass: enough shape to feel intentional, without pretending the organization already has a full marketing site.</p>
+        </div>
+        <div class="panels">
+          <article class="panel">
+            <div class="panel-head"><span class="kicker">01</span><span class="chip">Experiments</span></div>
+            <h3>Work that earns a public URL.</h3>
+            <p>Prototypes, design artifacts, and small investigations can land here once they are understandable outside the local workspace.</p>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><span class="kicker">02</span><span class="chip">Tools</span></div>
+            <h3>Utilities with receipts.</h3>
+            <p>Small helpers, dashboards, and automation surfaces should make their purpose, boundaries, and source repository obvious.</p>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><span class="kicker">03</span><span class="chip">Infrastructure</span></div>
+            <h3>Systems that can be revisited.</h3>
+            <p>When something becomes durable, this page can link to docs, demos, and repos without burying the provenance trail.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Published at hermegeddon.dev with GitHub Pages.</span>
+      <a href="https://github.com/hermegeddon/hermegeddon.github.io">Improve this page</a>
+    </footer>
+  </div>
 </body>
 </html>
