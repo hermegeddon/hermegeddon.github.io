@@ -460,6 +460,60 @@
       line-height: var(--leading-body);
     }
 
+    .resource-map {
+      display: grid;
+      grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr);
+      gap: var(--space-5);
+      margin-top: var(--space-6);
+      align-items: stretch;
+    }
+
+    .resource-intent {
+      display: grid;
+      align-content: start;
+      gap: var(--space-4);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      box-shadow: 10px 10px 0 var(--fg);
+      padding: var(--space-6);
+    }
+
+    .resource-intent p {
+      color: var(--fg-2);
+      font-size: var(--text-base);
+      line-height: var(--leading-body);
+      text-wrap: pretty;
+    }
+
+    .resource-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+
+    .resource-item {
+      display: grid;
+      gap: var(--space-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      box-shadow: var(--elev-ring);
+      padding: var(--space-5);
+    }
+
+    .resource-item strong {
+      color: var(--fg);
+      font-size: var(--text-lg);
+      line-height: 1.18;
+    }
+
+    .resource-item p {
+      color: var(--muted);
+      font-size: var(--text-sm);
+      line-height: var(--leading-body);
+    }
+
     .proof-band {
       display: grid;
       grid-template-columns: minmax(0, .82fr) minmax(320px, 1.18fr);
@@ -620,7 +674,12 @@
 
       .hero,
       .panels,
+      .resource-map,
       .proof-band {
+        grid-template-columns: 1fr;
+      }
+
+      .resource-list {
         grid-template-columns: 1fr;
       }
 
@@ -741,6 +800,36 @@
             <h3>Systems that can be revisited.</h3>
             <p>When something becomes durable, this page can link to docs, demos, and repos without burying the provenance trail.</p>
           </article>
+        </div>
+
+        <div class="resource-map" aria-labelledby="resource-title">
+          <div class="resource-intent">
+            <p class="kicker">Creative direction map</p>
+            <h2 id="resource-title">Choose from the whole bench.</h2>
+            <p>The landing page should preview the operating model: start from the files that exist, pull in specialist workflows only when they sharpen the artifact, and keep external services optional until a concrete asset is needed.</p>
+          </div>
+          <div class="resource-list" aria-label="Matched resources for future passes">
+            <article class="resource-item">
+              <span class="chip">Design files</span>
+              <strong>Canonical page first.</strong>
+              <p><code>index.html</code> stays the public source of truth; <code>README.md</code> anchors the repo purpose without inflating the story.</p>
+            </article>
+            <article class="resource-item">
+              <span class="chip">Skills</span>
+              <strong>Direction before decoration.</strong>
+              <p>Creative direction and design review are the useful lane here; media, deck, and ad skills wait until the page needs those surfaces.</p>
+            </article>
+            <article class="resource-item">
+              <span class="chip">Templates</span>
+              <strong>Optional export path.</strong>
+              <p>Screenshot, accessibility, PDF, or hosting templates are useful for review and publishing, not for inventing new page content.</p>
+            </article>
+            <article class="resource-item">
+              <span class="chip">Connectors</span>
+              <strong>No dependency yet.</strong>
+              <p>With no connected sources, the honest fallback is a static, inspectable page that can later point at real project receipts.</p>
+            </article>
+          </div>
         </div>
 
         <div class="proof-band" aria-labelledby="proof-title">
