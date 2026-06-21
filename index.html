@@ -512,6 +512,12 @@
       text-wrap: pretty;
     }
 
+    .repo-grid-full .repo-card:first-child {
+      grid-column: 1 / -1;
+      border-width: 2px;
+      box-shadow: 10px 10px 0 color-mix(in oklab, var(--surface-warm), white 18%), var(--elev-ring);
+    }
+
     .repo-meta {
       display: flex;
       flex-wrap: wrap;
@@ -817,7 +823,7 @@
           <p class="eyebrow">Public GitHub organization · founded Jun 2026</p>
           <h1 id="hero-title">Hermes work that can be inspected.</h1>
           <p class="lead">
-            Hermegeddon is the public namespace for Hermes Agent-adjacent plugins, UI experiments, memory tools, and selected forks. It keeps the front door small while making source, scope, and provenance easy to follow.
+            Hermegeddon is the public namespace for Hermes Agent-adjacent plugins, UI experiments, memory tools, and selected forks. This page now mirrors the current public GitHub listing so visitors can see what is original, what is forked, and where to inspect the source.
           </p>
           <div class="actions" aria-label="Primary links">
             <a class="btn btn-primary" href="https://github.com/hermegeddon">Visit the GitHub organization</a>
@@ -831,13 +837,13 @@
             <div class="terminal-body">
               <div><span>$</span> org: hermegeddon · 11 public repos</div>
               <div><span>$</span> mix: 5 original repos · 6 selected forks</div>
-              <div><span>$</span> focus: Hermes plugins · UI · memory · design</div>
+              <div><span>$</span> updated: GitHub public metadata · 2026-06-21</div>
             </div>
           </div>
           <div class="status-grid" aria-label="Site summary">
             <div class="tile"><strong>11</strong><p>Public repositories in the organization.</p></div>
             <div class="tile"><strong>5 / 6</strong><p>Original repos alongside selected forks.</p></div>
-            <div class="tile"><strong>Python</strong><p>Primary language across the repo set.</p></div>
+            <div class="tile"><strong>7</strong><p>Python-led repositories, plus HTML, TypeScript, Vue, and one language-neutral fork.</p></div>
           </div>
         </aside>
       </section>
@@ -847,18 +853,18 @@
       <section aria-labelledby="focus-title">
         <div class="section-head">
           <h2 id="focus-title">What is actually here?</h2>
-          <p class="section-note">A data-backed snapshot of the public namespace: original Hermes plugins, selected upstream forks, and this GitHub Pages site.</p>
+          <p class="section-note">A GitHub-backed snapshot of the public namespace: five original projects, six selected forks, seven Python-led repos, and one plain HTML Pages site.</p>
         </div>
         <div class="panels">
           <article class="panel">
             <div class="panel-head"><span class="kicker">01</span><span class="chip">Original repos</span></div>
             <h3>Five source projects live here.</h3>
-            <p>The original set currently includes this site plus Hermes plugins for Mycelium provenance, Memory Wiki, memory governance, and Claude Code runtime delegation.</p>
+            <p>The original set currently includes this site plus Hermes plugins for Mycelium provenance, Memory Wiki, memory governance, and delegated Claude Code runtime workflows.</p>
           </article>
           <article class="panel">
             <div class="panel-head"><span class="kicker">02</span><span class="chip">Selected forks</span></div>
             <h3>Six forks track adjacent systems.</h3>
-            <p>The fork set covers Hermes WebUI, Open Design, Hermes War Room, DeepTutor, hermes-gizmo, and gbrain: useful upstreams kept close for inspection and adaptation.</p>
+            <p>The fork set covers Hermes WebUI, Open Design, Hermes War Room, DeepTutor, hermes-gizmo, and gbrain: adjacent upstreams kept close for inspection and adaptation.</p>
           </article>
           <article class="panel">
             <div class="panel-head"><span class="kicker">03</span><span class="chip">Published site</span></div>
@@ -869,29 +875,64 @@
 
         <div class="repo-showcase" aria-labelledby="repo-title">
           <div class="section-head">
-            <h2 id="repo-title">Repository map.</h2>
-            <p class="section-note">Representative links from the current public org listing, grouped around the work this landing page should help visitors understand.</p>
+            <h2 id="repo-title">Public repository directory.</h2>
+            <p class="section-note">All eleven public repositories from the current org listing, written as short inspection cues rather than marketing summaries.</p>
           </div>
-          <div class="repo-grid">
+          <div class="repo-grid repo-grid-full">
+            <a class="repo-card" href="https://github.com/hermegeddon/hermegeddon.github.io">
+              <div class="repo-meta"><span>Original</span><span>HTML</span><span>pushed 2026-06-21</span></div>
+              <h3>hermegeddon.github.io</h3>
+              <p>Website for the Hermegeddon GitHub organization; publishes this static front door at hermegeddon.dev.</p>
+            </a>
+            <a class="repo-card" href="https://github.com/hermegeddon/hermes-claude-code-runtime">
+              <div class="repo-meta"><span>Original</span><span>Python</span><span>pushed 2026-06-17</span></div>
+              <h3>hermes-claude-code-runtime</h3>
+              <p>Hermes Agent plugin for delegated Claude Code runtime workflows.</p>
+            </a>
+            <a class="repo-card" href="https://github.com/hermegeddon/hermes-memory-governor">
+              <div class="repo-meta"><span>Original</span><span>Python</span><span>pushed 2026-06-17</span></div>
+              <h3>hermes-memory-governor</h3>
+              <p>Hermes Agent plugin for local memory governance policy and adapter orchestration.</p>
+            </a>
+            <a class="repo-card" href="https://github.com/hermegeddon/hermes-memory-wiki">
+              <div class="repo-meta"><span>Original</span><span>Python</span><span>pushed 2026-06-17</span></div>
+              <h3>hermes-memory-wiki</h3>
+              <p>Hermes Agent plugin for persistent Markdown knowledge vaults and Memory Wiki workflows.</p>
+            </a>
             <a class="repo-card" href="https://github.com/hermegeddon/hermes-mycelium-provenance">
               <div class="repo-meta"><span>Original</span><span>Python</span><span>pushed 2026-06-09</span></div>
               <h3>hermes-mycelium-provenance</h3>
               <p>Hermes Agent plugin for repo-local git-notes/Mycelium session provenance.</p>
             </a>
-            <a class="repo-card" href="https://github.com/hermegeddon/hermes-memory-wiki">
-              <div class="repo-meta"><span>Original</span><span>Python</span><span>MIT</span></div>
-              <h3>hermes-memory-wiki</h3>
-              <p>Persistent Markdown knowledge vault and Memory Wiki workflows for Hermes Agent.</p>
-            </a>
-            <a class="repo-card" href="https://github.com/hermegeddon/hermes-memory-governor">
-              <div class="repo-meta"><span>Original</span><span>Python</span><span>MIT</span></div>
-              <h3>hermes-memory-governor</h3>
-              <p>Local memory governance policy and adapter orchestration for Hermes Agent.</p>
+            <a class="repo-card" href="https://github.com/hermegeddon/hermes-webui">
+              <div class="repo-meta"><span>Fork</span><span>Python</span><span>pushed 2026-06-21</span></div>
+              <h3>hermes-webui</h3>
+              <p>Web and mobile interface for using Hermes Agent from a browser or phone.</p>
             </a>
             <a class="repo-card" href="https://github.com/hermegeddon/open-design">
-              <div class="repo-meta"><span>Fork</span><span>TypeScript</span><span>Apache-2.0</span></div>
+              <div class="repo-meta"><span>Fork</span><span>TypeScript</span><span>pushed 2026-06-21</span></div>
               <h3>open-design</h3>
-              <p>Local-first design workspace for web, desktop, mobile prototypes, decks, media, and export flows.</p>
+              <p>Local-first design workspace for prototypes, decks, media generation, export flows, and multiple agent CLIs.</p>
+            </a>
+            <a class="repo-card" href="https://github.com/hermegeddon/hermes-war-room">
+              <div class="repo-meta"><span>Fork</span><span>Vue</span><span>pushed 2026-06-21</span></div>
+              <h3>hermes-war-room</h3>
+              <p>UI layer for native Hermes orchestration features.</p>
+            </a>
+            <a class="repo-card" href="https://github.com/hermegeddon/DeepTutor">
+              <div class="repo-meta"><span>Fork</span><span>Python</span><span>pushed 2026-06-20</span></div>
+              <h3>DeepTutor</h3>
+              <p>Agent-native personalized tutoring project with an associated paper and public site.</p>
+            </a>
+            <a class="repo-card" href="https://github.com/hermegeddon/hermes-gizmo">
+              <div class="repo-meta"><span>Fork</span><span>Python</span><span>pushed 2026-06-17</span></div>
+              <h3>hermes-gizmo</h3>
+              <p>Tool-schema overhead reduction for Hermes Agent with keyword selection and Tool Search support.</p>
+            </a>
+            <a class="repo-card" href="https://github.com/hermegeddon/gbrain">
+              <div class="repo-meta"><span>Fork</span><span>—</span><span>pushed 2026-06-19</span></div>
+              <h3>gbrain</h3>
+              <p>Opinionated OpenClaw/Hermes Agent brain project kept nearby as an adjacent memory substrate.</p>
             </a>
           </div>
         </div>
