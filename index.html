@@ -353,7 +353,8 @@
       color: var(--warn);
     }
 
-    .status-grid {
+    .status-grid,
+    .metric-strip {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: var(--space-4);
@@ -384,6 +385,14 @@
       color: var(--muted);
       font-size: var(--text-sm);
       line-height: 1.45;
+    }
+
+    .tile code,
+    .repo-meta code,
+    .resource-item code {
+      font-family: var(--font-mono);
+      font-size: .92em;
+      color: var(--fg);
     }
 
     .section-head {
@@ -458,6 +467,60 @@
       color: var(--fg-2);
       font-size: var(--text-sm);
       line-height: var(--leading-body);
+    }
+
+    .repo-showcase {
+      margin-top: var(--space-8);
+    }
+
+    .repo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-4);
+      margin-top: var(--space-5);
+    }
+
+    .repo-card {
+      display: grid;
+      gap: var(--space-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      box-shadow: var(--elev-ring);
+      padding: var(--space-5);
+      text-decoration: none;
+      transition: transform var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard);
+    }
+
+    .repo-card:hover,
+    .repo-card:focus-visible {
+      outline: none;
+      transform: translateY(-3px);
+      box-shadow: var(--elev-raised), var(--focus-ring);
+    }
+
+    .repo-card h3 {
+      font-family: var(--font-mono);
+      font-size: var(--text-lg);
+      letter-spacing: -0.02em;
+    }
+
+    .repo-card p {
+      color: var(--fg-2);
+      font-size: var(--text-sm);
+      line-height: var(--leading-body);
+      text-wrap: pretty;
+    }
+
+    .repo-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      align-items: center;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 800;
     }
 
     .resource-map {
@@ -715,7 +778,9 @@
         font-size: clamp(48px, 17vw, 64px);
       }
 
-      .status-grid {
+      .status-grid,
+      .metric-strip,
+      .repo-grid {
         grid-template-columns: 1fr;
       }
 
@@ -749,10 +814,10 @@
     <main>
       <section class="hero" aria-labelledby="hero-title">
         <div>
-          <p class="eyebrow">GitHub organization · public landing</p>
-          <h1 id="hero-title">Experiments that survive contact.</h1>
+          <p class="eyebrow">Public GitHub organization · founded Jun 2026</p>
+          <h1 id="hero-title">Hermes work that can be inspected.</h1>
           <p class="lead">
-            Hermegeddon is a small public home for tools, infrastructure, and research-adjacent experiments: useful enough to publish, honest enough to keep close to the workbench.
+            Hermegeddon is the public namespace for Hermes Agent-adjacent plugins, UI experiments, memory tools, and selected forks. It keeps the front door small while making source, scope, and provenance easy to follow.
           </p>
           <div class="actions" aria-label="Primary links">
             <a class="btn btn-primary" href="https://github.com/hermegeddon">Visit the GitHub organization</a>
@@ -764,15 +829,15 @@
           <div class="terminal" aria-hidden="true">
             <div class="terminal-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
             <div class="terminal-body">
-              <div><span>$</span> org: hermegeddon</div>
-              <div><span>$</span> status: published via GitHub Pages</div>
-              <div><span>$</span> bias: prototypes → tools → proof</div>
+              <div><span>$</span> org: hermegeddon · 11 public repos</div>
+              <div><span>$</span> mix: 5 original repos · 6 selected forks</div>
+              <div><span>$</span> focus: Hermes plugins · UI · memory · design</div>
             </div>
           </div>
           <div class="status-grid" aria-label="Site summary">
-            <div class="tile"><strong>Public</strong><p>Readable starting point for the organization.</p></div>
-            <div class="tile"><strong>Small</strong><p>One page now; room for project pages later.</p></div>
-            <div class="tile"><strong>Live</strong><p>Served at hermegeddon.dev.</p></div>
+            <div class="tile"><strong>11</strong><p>Public repositories in the organization.</p></div>
+            <div class="tile"><strong>5 / 6</strong><p>Original repos alongside selected forks.</p></div>
+            <div class="tile"><strong>Python</strong><p>Primary language across the repo set.</p></div>
           </div>
         </aside>
       </section>
@@ -781,38 +846,67 @@
 
       <section aria-labelledby="focus-title">
         <div class="section-head">
-          <h2 id="focus-title">What belongs here?</h2>
-          <p class="section-note">A tighter first pass: enough shape to feel intentional, without pretending the organization already has a full marketing site.</p>
+          <h2 id="focus-title">What is actually here?</h2>
+          <p class="section-note">A data-backed snapshot of the public namespace: original Hermes plugins, selected upstream forks, and this GitHub Pages site.</p>
         </div>
         <div class="panels">
           <article class="panel">
-            <div class="panel-head"><span class="kicker">01</span><span class="chip">Experiments</span></div>
-            <h3>Work that earns a public URL.</h3>
-            <p>Prototypes, design artifacts, and small investigations can land here once they are understandable outside the local workspace.</p>
+            <div class="panel-head"><span class="kicker">01</span><span class="chip">Original repos</span></div>
+            <h3>Five source projects live here.</h3>
+            <p>The original set currently includes this site plus Hermes plugins for Mycelium provenance, Memory Wiki, memory governance, and Claude Code runtime delegation.</p>
           </article>
           <article class="panel">
-            <div class="panel-head"><span class="kicker">02</span><span class="chip">Tools</span></div>
-            <h3>Utilities with receipts.</h3>
-            <p>Small helpers, dashboards, and automation surfaces should make their purpose, boundaries, and source repository obvious.</p>
+            <div class="panel-head"><span class="kicker">02</span><span class="chip">Selected forks</span></div>
+            <h3>Six forks track adjacent systems.</h3>
+            <p>The fork set covers Hermes WebUI, Open Design, Hermes War Room, DeepTutor, hermes-gizmo, and gbrain: useful upstreams kept close for inspection and adaptation.</p>
           </article>
           <article class="panel">
-            <div class="panel-head"><span class="kicker">03</span><span class="chip">Infrastructure</span></div>
-            <h3>Systems that can be revisited.</h3>
-            <p>When something becomes durable, this page can link to docs, demos, and repos without burying the provenance trail.</p>
+            <div class="panel-head"><span class="kicker">03</span><span class="chip">Published site</span></div>
+            <h3>One static front door.</h3>
+            <p><code>hermegeddon.github.io</code> is a plain HTML GitHub Pages repo with a custom domain, so the public site remains easy to diff, preview, and improve.</p>
           </article>
+        </div>
+
+        <div class="repo-showcase" aria-labelledby="repo-title">
+          <div class="section-head">
+            <h2 id="repo-title">Repository map.</h2>
+            <p class="section-note">Representative links from the current public org listing, grouped around the work this landing page should help visitors understand.</p>
+          </div>
+          <div class="repo-grid">
+            <a class="repo-card" href="https://github.com/hermegeddon/hermes-mycelium-provenance">
+              <div class="repo-meta"><span>Original</span><span>Python</span><span>pushed 2026-06-09</span></div>
+              <h3>hermes-mycelium-provenance</h3>
+              <p>Hermes Agent plugin for repo-local git-notes/Mycelium session provenance.</p>
+            </a>
+            <a class="repo-card" href="https://github.com/hermegeddon/hermes-memory-wiki">
+              <div class="repo-meta"><span>Original</span><span>Python</span><span>MIT</span></div>
+              <h3>hermes-memory-wiki</h3>
+              <p>Persistent Markdown knowledge vault and Memory Wiki workflows for Hermes Agent.</p>
+            </a>
+            <a class="repo-card" href="https://github.com/hermegeddon/hermes-memory-governor">
+              <div class="repo-meta"><span>Original</span><span>Python</span><span>MIT</span></div>
+              <h3>hermes-memory-governor</h3>
+              <p>Local memory governance policy and adapter orchestration for Hermes Agent.</p>
+            </a>
+            <a class="repo-card" href="https://github.com/hermegeddon/open-design">
+              <div class="repo-meta"><span>Fork</span><span>TypeScript</span><span>Apache-2.0</span></div>
+              <h3>open-design</h3>
+              <p>Local-first design workspace for web, desktop, mobile prototypes, decks, media, and export flows.</p>
+            </a>
+          </div>
         </div>
 
         <div class="resource-map" aria-labelledby="resource-title">
           <div class="resource-intent">
             <p class="kicker">Creative direction map</p>
             <h2 id="resource-title">Choose from the whole bench.</h2>
-            <p>The landing page should preview the operating model: start from the files that exist, pull in specialist workflows only when they sharpen the artifact, and keep external services optional until a concrete asset is needed.</p>
+            <p>The landing page should preview the operating model: use the live repository list first, pull in specialist workflows only when they sharpen the artifact, and keep external services optional until a concrete asset is needed.</p>
           </div>
           <div class="resource-list" aria-label="Matched resources for future passes">
             <article class="resource-item">
               <span class="chip">Design files</span>
               <strong>Canonical page first.</strong>
-              <p><code>index.html</code> stays the public source of truth; <code>README.md</code> anchors the repo purpose without inflating the story.</p>
+              <p><code>index.html</code> is the canonical public page; <code>CNAME</code> binds <code>hermegeddon.dev</code>; <code>README.md</code> records local preview with Python's HTTP server.</p>
             </article>
             <article class="resource-item">
               <span class="chip">Skills</span>
@@ -826,8 +920,8 @@
             </article>
             <article class="resource-item">
               <span class="chip">Connectors</span>
-              <strong>No dependency yet.</strong>
-              <p>With no connected sources, the honest fallback is a static, inspectable page that can later point at real project receipts.</p>
+              <strong>GitHub API as source.</strong>
+              <p>The real-data pass uses public GitHub metadata only: repo names, descriptions, languages, licenses, fork/source status, Pages, and update dates.</p>
             </article>
           </div>
         </div>
@@ -836,20 +930,20 @@
           <div class="proof-card">
             <p class="kicker">Design posture</p>
             <h2 id="proof-title">Useful, then public.</h2>
-            <p>The page should make one promise: Hermegeddon publishes work only when it has enough context, source, and maintenance surface to be inspected later.</p>
+            <p>The page should make one promise: Hermegeddon publishes work with source-first context, visible boundaries, and enough provenance to be inspected later.</p>
           </div>
           <ul class="link-list" aria-label="Useful starting points">
             <li>
               <a href="https://github.com/hermegeddon">
                 <span class="link-index">A</span>
-                <span class="link-copy"><strong>GitHub organization</strong><span>Browse the public namespace before any project-specific landing pages exist.</span></span>
+                <span class="link-copy"><strong>GitHub organization</strong><span>Browse all 11 public repositories, including 5 original projects and 6 selected forks.</span></span>
                 <span class="arrow" aria-hidden="true">↗</span>
               </a>
             </li>
             <li>
               <a href="https://github.com/hermegeddon/hermegeddon.github.io">
                 <span class="link-index">B</span>
-                <span class="link-copy"><strong>Site source</strong><span>Keep this landing page inspectable, versioned, and easy to improve.</span></span>
+                <span class="link-copy"><strong>Site source</strong><span>Inspect the static GitHub Pages repo that publishes this landing page at the custom domain.</span></span>
                 <span class="arrow" aria-hidden="true">↗</span>
               </a>
             </li>
