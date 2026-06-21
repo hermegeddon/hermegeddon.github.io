@@ -460,6 +460,119 @@
       line-height: var(--leading-body);
     }
 
+    .proof-band {
+      display: grid;
+      grid-template-columns: minmax(0, .82fr) minmax(320px, 1.18fr);
+      gap: var(--space-6);
+      align-items: stretch;
+      margin-top: var(--section-y-tablet);
+    }
+
+    .proof-card {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-lg);
+      background: var(--surface-warm);
+      box-shadow: 12px 12px 0 var(--fg);
+      padding: var(--space-6);
+    }
+
+    .proof-card::after {
+      content: "receipts > hype";
+      position: absolute;
+      right: -36px;
+      bottom: 28px;
+      transform: rotate(-10deg);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-pill);
+      background: var(--accent);
+      color: var(--accent-on);
+      padding: var(--space-2) var(--space-5);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .proof-card h2 {
+      max-width: 9ch;
+    }
+
+    .proof-card p {
+      max-width: 32ch;
+      margin-top: var(--space-5);
+      color: var(--fg-2);
+      font-size: var(--text-base);
+      line-height: var(--leading-body);
+      text-wrap: pretty;
+    }
+
+    .link-list {
+      display: grid;
+      gap: var(--space-3);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .link-list a {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: var(--space-4);
+      align-items: center;
+      min-height: 76px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      box-shadow: var(--elev-ring);
+      padding: var(--space-4) var(--space-5);
+      text-decoration: none;
+      transition: transform var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard);
+    }
+
+    .link-list a:hover,
+    .link-list a:focus-visible {
+      outline: none;
+      transform: translateY(-2px);
+      box-shadow: var(--elev-raised), var(--focus-ring);
+    }
+
+    .link-index {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 13px;
+      background: var(--fg);
+      color: var(--accent-on);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 900;
+    }
+
+    .link-copy strong {
+      display: block;
+      color: var(--fg);
+      font-size: var(--text-base);
+      line-height: 1.25;
+    }
+
+    .link-copy span {
+      display: block;
+      margin-top: var(--space-1);
+      color: var(--muted);
+      font-size: var(--text-sm);
+      line-height: 1.35;
+    }
+
+    .arrow {
+      color: var(--meta);
+      font-family: var(--font-mono);
+      font-weight: 900;
+    }
+
     .chip {
       display: inline-flex;
       width: fit-content;
@@ -506,7 +619,8 @@
       }
 
       .hero,
-      .panels {
+      .panels,
+      .proof-band {
         grid-template-columns: 1fr;
       }
 
@@ -544,6 +658,14 @@
 
       .status-grid {
         grid-template-columns: 1fr;
+      }
+
+      .link-list a {
+        grid-template-columns: auto minmax(0, 1fr);
+      }
+
+      .arrow {
+        display: none;
       }
 
       .actions .btn {
@@ -619,6 +741,37 @@
             <h3>Systems that can be revisited.</h3>
             <p>When something becomes durable, this page can link to docs, demos, and repos without burying the provenance trail.</p>
           </article>
+        </div>
+
+        <div class="proof-band" aria-labelledby="proof-title">
+          <div class="proof-card">
+            <p class="kicker">Design posture</p>
+            <h2 id="proof-title">Useful, then public.</h2>
+            <p>The page should make one promise: Hermegeddon publishes work only when it has enough context, source, and maintenance surface to be inspected later.</p>
+          </div>
+          <ul class="link-list" aria-label="Useful starting points">
+            <li>
+              <a href="https://github.com/hermegeddon">
+                <span class="link-index">A</span>
+                <span class="link-copy"><strong>GitHub organization</strong><span>Browse the public namespace before any project-specific landing pages exist.</span></span>
+                <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/hermegeddon/hermegeddon.github.io">
+                <span class="link-index">B</span>
+                <span class="link-copy"><strong>Site source</strong><span>Keep this landing page inspectable, versioned, and easy to improve.</span></span>
+                <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://hermegeddon.dev">
+                <span class="link-index">C</span>
+                <span class="link-copy"><strong>Published page</strong><span>Use the public URL as the stable front door, not as a substitute for project receipts.</span></span>
+                <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </section>
     </main>
