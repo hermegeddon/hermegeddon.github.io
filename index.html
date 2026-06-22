@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Hermegeddon is the public GitHub Pages home for experiments, tools, and infrastructure that survive first contact with reality.">
-  <title>Hermegeddon · experiments that survive contact</title>
+  <title>Hermegeddon, inspectable Hermes work</title>
   <style>
     /* design-systems/colorful/tokens.css
      * Structured token bindings for Colorful.
@@ -85,23 +85,8 @@
     body {
       min-height: 100vh;
       margin: 0;
-      background:
-        radial-gradient(circle at 82% 8%, color-mix(in oklab, var(--surface-warm), transparent 10%) 0 14rem, transparent 27rem),
-        linear-gradient(135deg, var(--bg), color-mix(in oklab, var(--surface-warm), white 54%) 60%, var(--bg));
+      background: var(--bg);
       color: var(--fg);
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background-image:
-        linear-gradient(color-mix(in oklab, var(--border), transparent 18%) 1px, transparent 1px),
-        linear-gradient(90deg, color-mix(in oklab, var(--border), transparent 18%) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,.58), transparent 72%);
     }
 
     a {
@@ -165,10 +150,9 @@
       border-radius: 14px;
       background: var(--accent);
       color: var(--accent-on);
-      box-shadow: 6px 6px 0 var(--fg);
+      box-shadow: 4px 4px 0 var(--fg);
       font-family: var(--font-mono);
       font-size: var(--text-lg);
-      transform: rotate(-3deg);
     }
 
     .nav {
@@ -219,15 +203,6 @@
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--success);
-      box-shadow: 0 0 0 4px color-mix(in oklab, var(--success), transparent 78%);
     }
 
     h1,
@@ -320,12 +295,11 @@
       border: 2px solid var(--fg);
       border-radius: var(--radius-lg);
       background: var(--surface);
-      box-shadow: 18px 18px 0 var(--surface-warm), 18px 18px 0 2px var(--fg);
-      transform: rotate(1.25deg);
+      box-shadow: 10px 10px 0 var(--surface-warm), 10px 10px 0 2px var(--fg);
     }
 
     .hero-card::before {
-      content: "public home";
+      content: "current snapshot";
       position: absolute;
       top: -18px;
       right: var(--space-5);
@@ -341,45 +315,39 @@
       text-transform: uppercase;
     }
 
-    .terminal {
-      overflow: hidden;
+    .snapshot-panel {
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      background: var(--fg);
-      color: var(--accent-on);
-      font-family: var(--font-mono);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
-    }
-
-    .terminal-head {
-      display: flex;
-      align-items: center;
-      gap: var(--space-2);
-      padding: var(--space-3) var(--space-4);
-      border-bottom: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.08);
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--danger);
-    }
-
-    .dot:nth-child(2) { background: var(--warn); }
-    .dot:nth-child(3) { background: var(--success); }
-
-    .terminal-body {
-      display: grid;
-      gap: var(--space-3);
+      background: color-mix(in oklab, var(--surface-warm), white 46%);
       padding: var(--space-5);
-      font-size: var(--text-sm);
-      line-height: 1.7;
     }
 
-    .terminal-body span {
-      color: var(--warn);
+    .snapshot-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-3);
+      margin: var(--space-4) 0 0;
+    }
+
+    .snapshot-list div {
+      border-top: 1px solid var(--border);
+      padding-top: var(--space-3);
+    }
+
+    .snapshot-list dt {
+      color: var(--muted);
+      font-size: var(--text-xs);
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .snapshot-list dd {
+      margin: var(--space-1) 0 0;
+      color: var(--fg);
+      font-family: var(--font-mono);
+      font-size: var(--text-lg);
+      font-weight: 900;
     }
 
     .status-grid,
@@ -425,10 +393,8 @@
     }
 
     .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: var(--space-5);
+      display: grid;
+      gap: var(--space-3);
       margin: 0 0 var(--space-5);
     }
 
@@ -459,7 +425,7 @@
       display: grid;
       align-content: start;
       gap: var(--space-4);
-      min-height: 210px;
+      min-height: 188px;
       padding: var(--space-5);
       transition: transform var(--motion-base) var(--ease-standard), box-shadow var(--motion-base) var(--ease-standard);
     }
@@ -662,12 +628,12 @@
       border: 2px solid var(--fg);
       border-radius: var(--radius-lg);
       background: var(--surface-warm);
-      box-shadow: 12px 12px 0 var(--fg);
+      box-shadow: 8px 8px 0 var(--fg);
       padding: var(--space-6);
     }
 
     .proof-card::after {
-      content: "receipts > hype";
+      content: "source first";
       position: absolute;
       right: -36px;
       bottom: 28px;
@@ -780,10 +746,10 @@
     }
 
     .rule {
-      height: 2px;
+      height: 0;
       margin: var(--section-y-tablet) 0 var(--space-8);
       border: 0;
-      background: linear-gradient(90deg, var(--fg), transparent);
+      border-top: 2px solid var(--fg);
     }
 
     footer {
@@ -827,10 +793,6 @@
         transform: none;
       }
 
-      .section-head {
-        align-items: start;
-        flex-direction: column;
-      }
     }
 
     @media (max-width: 620px) {
@@ -915,10 +877,10 @@
     <main id="main">
       <section class="hero" aria-labelledby="hero-title">
         <div>
-          <p class="eyebrow">Public GitHub organization · founded Jun 2026</p>
+          <p class="eyebrow">Public GitHub organization, founded Jun 2026</p>
           <h1 id="hero-title">Hermes work that can be inspected.</h1>
           <p class="lead">
-            Hermegeddon is the public namespace for Hermes Agent-adjacent plugins, UI experiments, memory tools, and selected forks. This page now mirrors the current public GitHub listing so visitors can see what is original, what is forked, and where to inspect the source.
+            Hermegeddon is the public namespace for Hermes Agent-adjacent plugins, UI experiments, memory tools, and selected forks. The page mirrors the public GitHub listing so visitors can see what is original, what is forked, and where the source lives.
           </p>
           <div class="actions" aria-label="Primary links">
             <a class="btn btn-primary" href="https://github.com/hermegeddon">Visit the GitHub organization</a>
@@ -927,13 +889,14 @@
         </div>
 
         <aside class="hero-card" aria-label="Repository quick look">
-          <div class="terminal" aria-hidden="true">
-            <div class="terminal-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            <div class="terminal-body">
-              <div><span>$</span> org: hermegeddon · 11 public repos</div>
-              <div><span>$</span> mix: 5 original repos · 6 selected forks</div>
-              <div><span>$</span> updated: GitHub public metadata · 2026-06-21</div>
-            </div>
+          <div class="snapshot-panel">
+            <p class="kicker">Current public snapshot</p>
+            <dl class="snapshot-list">
+              <div><dt>Public repos</dt><dd>11</dd></div>
+              <div><dt>Original projects</dt><dd>5</dd></div>
+              <div><dt>Selected forks</dt><dd>6</dd></div>
+              <div><dt>Last checked</dt><dd>2026-06-21</dd></div>
+            </dl>
           </div>
           <div class="status-grid" aria-label="Site summary">
             <div class="tile"><strong>11</strong><p>Public repositories in the organization.</p></div>
@@ -952,17 +915,17 @@
         </div>
         <div class="panels">
           <article class="panel">
-            <div class="panel-head"><span class="kicker">01</span><span class="chip">Original repos</span></div>
+            <div class="panel-head"><span class="chip">Original repos</span></div>
             <h3>Five source projects live here.</h3>
             <p>The original set currently includes this site plus Hermes plugins for Mycelium provenance, Memory Wiki, memory governance, and delegated Claude Code runtime workflows.</p>
           </article>
           <article class="panel">
-            <div class="panel-head"><span class="kicker">02</span><span class="chip">Selected forks</span></div>
+            <div class="panel-head"><span class="chip">Selected forks</span></div>
             <h3>Six forks track adjacent systems.</h3>
             <p>The fork set covers Hermes WebUI, Open Design, Hermes War Room, DeepTutor, hermes-gizmo, and gbrain: adjacent upstreams kept close for inspection and adaptation.</p>
           </article>
           <article class="panel">
-            <div class="panel-head"><span class="kicker">03</span><span class="chip">Published site</span></div>
+            <div class="panel-head"><span class="chip">Published site</span></div>
             <h3>One static front door.</h3>
             <p><code>hermegeddon.github.io</code> is a plain HTML GitHub Pages repo with a custom domain, so the public site remains easy to diff, preview, and improve.</p>
           </article>
@@ -1025,7 +988,7 @@
               <p>Tool-schema overhead reduction for Hermes Agent with keyword selection and Tool Search support.</p>
             </a>
             <a class="repo-card" href="https://github.com/hermegeddon/gbrain">
-              <div class="repo-meta"><span>Fork</span><span>—</span><span>pushed 2026-06-19</span></div>
+              <div class="repo-meta"><span>Fork</span><span>language not set</span><span>pushed 2026-06-19</span></div>
               <h3>gbrain</h3>
               <p>Opinionated OpenClaw/Hermes Agent brain project kept nearby as an adjacent memory substrate.</p>
             </a>
@@ -1034,29 +997,28 @@
 
         <div class="resource-map" aria-labelledby="resource-title">
           <div class="resource-intent">
-            <p class="kicker">Creative direction map</p>
-            <h2 id="resource-title">Choose from the whole bench.</h2>
-            <p>The landing page should preview the operating model: use the live repository list first, pull in specialist workflows only when they sharpen the artifact, and keep external services optional until a concrete asset is needed.</p>
+            <h2 id="resource-title">Source first. Tools second.</h2>
+            <p>The page starts with public repository data, then points to the few project resources that help someone verify or improve it.</p>
           </div>
           <div class="resource-list" aria-label="Matched resources for future passes">
             <article class="resource-item">
               <span class="chip">Design files</span>
-              <strong>Canonical page first.</strong>
+              <strong>The page is the product.</strong>
               <p><code>index.html</code> is the canonical public page; <code>CNAME</code> binds <code>hermegeddon.dev</code>; <code>README.md</code> records local preview with Python's HTTP server.</p>
             </article>
             <article class="resource-item">
               <span class="chip">Skills</span>
-              <strong>Direction before decoration.</strong>
+              <strong>Use specialist review only when it helps.</strong>
               <p>Creative direction and design review are the useful lane here; media, deck, and ad skills wait until the page needs those surfaces.</p>
             </article>
             <article class="resource-item">
               <span class="chip">Templates</span>
-              <strong>Optional export path.</strong>
+              <strong>Export paths stay optional.</strong>
               <p>Screenshot, accessibility, PDF, or hosting templates are useful for review and publishing, not for inventing new page content.</p>
             </article>
             <article class="resource-item">
-              <span class="chip">Connectors</span>
-              <strong>GitHub API as source.</strong>
+              <span class="chip">Source data</span>
+              <strong>GitHub metadata grounds the copy.</strong>
               <p>The real-data pass uses public GitHub metadata only: repo names, descriptions, languages, licenses, fork/source status, Pages, and update dates.</p>
             </article>
           </div>
@@ -1064,17 +1026,15 @@
 
         <aside class="state-note" aria-labelledby="freshness-title">
           <div>
-            <p class="kicker">Static data state</p>
-            <h3 id="freshness-title">Readable even when the source changes.</h3>
+            <h3 id="freshness-title">Readable when the source changes.</h3>
           </div>
           <p>This page is a hand-curated snapshot, not a live dashboard. If GitHub is unavailable, the directory still gives visitors useful names, roles, and inspection links; if the org changes, the update path is the site repository.</p>
         </aside>
 
         <div class="proof-band" aria-labelledby="proof-title">
           <div class="proof-card">
-            <p class="kicker">Design posture</p>
-            <h2 id="proof-title">Useful, then public.</h2>
-            <p>The page should make one promise: Hermegeddon publishes work with source-first context, visible boundaries, and enough provenance to be inspected later.</p>
+            <h2 id="proof-title">Useful before polished.</h2>
+            <p>The page makes one promise: Hermegeddon publishes work with source-first context, visible boundaries, and enough provenance to inspect later.</p>
           </div>
           <ul class="link-list" aria-label="Useful starting points">
             <li>
@@ -1094,7 +1054,7 @@
             <li>
               <a href="https://hermegeddon.dev">
                 <span class="link-index">C</span>
-                <span class="link-copy"><strong>Published page</strong><span>Use the public URL as the stable front door, not as a substitute for project receipts.</span></span>
+                <span class="link-copy"><strong>Published page</strong><span>Use the public URL as the stable front door, with source links kept close by.</span></span>
                 <span class="arrow" aria-hidden="true">↗</span>
               </a>
             </li>
