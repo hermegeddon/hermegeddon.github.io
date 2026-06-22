@@ -288,13 +288,31 @@
     }
 
     .hero-card {
+      position: relative;
       display: grid;
       gap: var(--space-4);
       padding: var(--space-5);
       border: 2px solid var(--fg);
       border-radius: var(--radius-lg);
       background: var(--surface);
-      box-shadow: 8px 8px 0 var(--fg);
+      box-shadow: 10px 10px 0 var(--surface-warm), 10px 10px 0 2px var(--fg);
+    }
+
+    .hero-card::before {
+      content: "current snapshot";
+      position: absolute;
+      top: -18px;
+      right: var(--space-5);
+      padding: var(--space-2) var(--space-4);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-pill);
+      background: var(--accent);
+      color: var(--accent-on);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
     .snapshot-panel {
@@ -338,31 +356,6 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: var(--space-4);
       margin-top: var(--space-8);
-    }
-
-    .key-facts {
-      display: grid;
-      gap: var(--space-3);
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .key-facts li {
-      display: grid;
-      grid-template-columns: minmax(120px, .55fr) minmax(0, 1fr);
-      gap: var(--space-4);
-      border-top: 1px solid var(--border);
-      padding-top: var(--space-3);
-      color: var(--fg-2);
-      font-size: var(--text-sm);
-      line-height: var(--leading-body);
-    }
-
-    .key-facts strong {
-      color: var(--fg);
-      font-family: var(--font-mono);
-      font-size: var(--text-sm);
     }
 
     .tile,
@@ -421,28 +414,11 @@
       text-wrap: pretty;
     }
 
-    .fact-list {
+    .panels {
       display: grid;
-      gap: 0;
-      margin: var(--space-6) 0 0;
-      padding: 0;
-      border-top: 2px solid var(--fg);
-      list-style: none;
-    }
-
-    .fact-list li {
-      display: grid;
-      grid-template-columns: minmax(160px, .42fr) minmax(0, .58fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: var(--space-5);
-      border-bottom: 1px solid var(--border);
-      padding: var(--space-5) 0;
-    }
-
-    .fact-list p {
-      color: var(--fg-2);
-      font-size: var(--text-sm);
-      line-height: var(--leading-body);
-      text-wrap: pretty;
+      margin-top: var(--space-6);
     }
 
     .panel {
@@ -451,6 +427,12 @@
       gap: var(--space-4);
       min-height: 188px;
       padding: var(--space-5);
+      transition: transform var(--motion-base) var(--ease-standard), box-shadow var(--motion-base) var(--ease-standard);
+    }
+
+    .panel:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--elev-raised);
     }
 
     .panel-head {
@@ -556,16 +538,21 @@
 
     .resource-map {
       display: grid;
+      grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr);
       gap: var(--space-5);
       margin-top: var(--space-6);
-      border-top: 2px solid var(--fg);
-      padding-top: var(--space-5);
+      align-items: stretch;
     }
 
     .resource-intent {
       display: grid;
-      gap: var(--space-3);
-      max-width: 760px;
+      align-content: start;
+      gap: var(--space-4);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      box-shadow: 10px 10px 0 var(--fg);
+      padding: var(--space-6);
     }
 
     .resource-intent p {
@@ -577,29 +564,27 @@
 
     .resource-list {
       display: grid;
-      gap: 0;
-      margin: 0;
-      padding: 0;
-      list-style: none;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-4);
     }
 
     .resource-item {
       display: grid;
-      grid-template-columns: minmax(130px, .28fr) minmax(0, 1fr);
-      gap: var(--space-5);
-      border-top: 1px solid var(--border);
-      padding: var(--space-4) 0;
+      gap: var(--space-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      box-shadow: var(--elev-ring);
+      padding: var(--space-5);
     }
 
     .resource-item strong {
-      display: block;
       color: var(--fg);
-      font-size: var(--text-base);
-      line-height: 1.25;
+      font-size: var(--text-lg);
+      line-height: 1.18;
     }
 
     .resource-item p {
-      margin-top: var(--space-1);
       color: var(--muted);
       font-size: var(--text-sm);
       line-height: var(--leading-body);
@@ -638,11 +623,31 @@
     }
 
     .proof-card {
+      position: relative;
+      overflow: hidden;
       border: 2px solid var(--fg);
       border-radius: var(--radius-lg);
       background: var(--surface-warm);
       box-shadow: 8px 8px 0 var(--fg);
       padding: var(--space-6);
+    }
+
+    .proof-card::after {
+      content: "source first";
+      position: absolute;
+      right: -36px;
+      bottom: 28px;
+      transform: rotate(-10deg);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-pill);
+      background: var(--accent);
+      color: var(--accent-on);
+      padding: var(--space-2) var(--space-5);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
     }
 
     .proof-card h2 {
@@ -772,11 +777,14 @@
       }
 
       .hero,
-      .fact-list li,
-      .resource-item,
+      .panels,
       .resource-map,
       .state-note,
       .proof-band {
+        grid-template-columns: 1fr;
+      }
+
+      .resource-list {
         grid-template-columns: 1fr;
       }
 
@@ -890,11 +898,11 @@
               <div><dt>Last checked</dt><dd>2026-06-21</dd></div>
             </dl>
           </div>
-          <ul class="key-facts" aria-label="Site summary">
-            <li><strong>Originals vs forks</strong><span>Five original projects sit beside six selected forks, so visitors can separate work owned here from upstreams kept nearby.</span></li>
-            <li><strong>Language mix</strong><span>Python leads the org, with HTML for the public site and TypeScript or Vue where adjacent interfaces require it.</span></li>
-            <li><strong>Update model</strong><span>This is a readable snapshot. Source changes should be made in the site repository, not hidden behind a live feed.</span></li>
-          </ul>
+          <div class="status-grid" aria-label="Site summary">
+            <div class="tile"><strong>Originals vs forks</strong><p>Five original projects sit beside six selected forks, so visitors can separate work owned here from upstreams kept nearby.</p></div>
+            <div class="tile"><strong>Language mix</strong><p>Python leads the org, with HTML for the public site and TypeScript or Vue where adjacent interfaces require it.</p></div>
+            <div class="tile"><strong>Update model</strong><p>This is a readable snapshot. Source changes should be made in the site repository, not hidden behind a live feed.</p></div>
+          </div>
         </aside>
       </section>
 
@@ -905,20 +913,23 @@
           <h2 id="focus-title">What is actually here?</h2>
           <p class="section-note">A GitHub-backed snapshot of the public namespace: five original projects, six selected forks, seven Python-led repos, and one plain HTML Pages site.</p>
         </div>
-        <ul class="fact-list">
-          <li>
+        <div class="panels">
+          <article class="panel">
+            <div class="panel-head"><span class="chip">Original repos</span></div>
             <h3>Five source projects live here.</h3>
             <p>The original set currently includes this site plus Hermes plugins for Mycelium provenance, Memory Wiki, memory governance, and delegated Claude Code runtime workflows.</p>
-          </li>
-          <li>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><span class="chip">Selected forks</span></div>
             <h3>Six forks track adjacent systems.</h3>
             <p>The fork set covers Hermes WebUI, Open Design, Hermes War Room, DeepTutor, hermes-gizmo, and gbrain: adjacent upstreams kept close for inspection and adaptation.</p>
-          </li>
-          <li>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><span class="chip">Published site</span></div>
             <h3>One static front door.</h3>
             <p><code>hermegeddon.github.io</code> is a plain HTML GitHub Pages repo with a custom domain, so the public site remains easy to diff, preview, and improve.</p>
-          </li>
-        </ul>
+          </article>
+        </div>
 
         <div class="repo-showcase" aria-labelledby="repo-title">
           <div class="section-head">
@@ -989,24 +1000,28 @@
             <h2 id="resource-title">Source first. Tools second.</h2>
             <p>The page starts with public repository data, then points to the few project resources that help someone verify or improve it.</p>
           </div>
-          <ul class="resource-list" aria-label="Matched resources for future passes">
-            <li class="resource-item">
+          <div class="resource-list" aria-label="Matched resources for future passes">
+            <article class="resource-item">
               <span class="chip">Design files</span>
-              <div><strong>The page is the product.</strong><p><code>index.html</code> is the canonical public page; <code>CNAME</code> binds <code>hermegeddon.dev</code>; <code>README.md</code> records local preview with Python's HTTP server.</p></div>
-            </li>
-            <li class="resource-item">
+              <strong>The page is the product.</strong>
+              <p><code>index.html</code> is the canonical public page; <code>CNAME</code> binds <code>hermegeddon.dev</code>; <code>README.md</code> records local preview with Python's HTTP server.</p>
+            </article>
+            <article class="resource-item">
               <span class="chip">Skills</span>
-              <div><strong>Use specialist review only when it helps.</strong><p>Creative direction and design review are the useful lane here; media, deck, and ad skills wait until the page needs those surfaces.</p></div>
-            </li>
-            <li class="resource-item">
+              <strong>Use specialist review only when it helps.</strong>
+              <p>Creative direction and design review are the useful lane here; media, deck, and ad skills wait until the page needs those surfaces.</p>
+            </article>
+            <article class="resource-item">
               <span class="chip">Templates</span>
-              <div><strong>Export paths stay optional.</strong><p>Screenshot, accessibility, PDF, or hosting templates are useful for review and publishing, not for inventing new page content.</p></div>
-            </li>
-            <li class="resource-item">
+              <strong>Export paths stay optional.</strong>
+              <p>Screenshot, accessibility, PDF, or hosting templates are useful for review and publishing, not for inventing new page content.</p>
+            </article>
+            <article class="resource-item">
               <span class="chip">Source data</span>
-              <div><strong>GitHub metadata grounds the copy.</strong><p>The real-data pass uses public GitHub metadata only: repo names, descriptions, languages, licenses, fork/source status, Pages, and update dates.</p></div>
-            </li>
-          </ul>
+              <strong>GitHub metadata grounds the copy.</strong>
+              <p>The real-data pass uses public GitHub metadata only: repo names, descriptions, languages, licenses, fork/source status, Pages, and update dates.</p>
+            </article>
+          </div>
         </div>
 
         <aside class="state-note" aria-labelledby="freshness-title">
